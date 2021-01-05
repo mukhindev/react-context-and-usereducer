@@ -6,13 +6,16 @@ export const initialState = {
   counter: 42,
 };
 
-const reducers = {
-  updateCounter(state, action) {
-    return {
-      ...state,
-      counter: action.payload,
-    };
-  },
-};
+export const counterReducer = (state, action) => {
+  const { type, payload } = action;
 
-export const counterReducer = (state, action) => reducers[action.type](state, action);
+  switch (type) {
+    case 'UPDATE_COUNTER':
+      return {
+        ...state,
+        counter: payload,
+      };
+    default:
+      return state;
+  }
+};

@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useDispatch } from '../hooks/useDispatch';
 import { CounterContext } from '../contexts/CounterContext';
 
 function Counter() {
-  const { state, dispatch } = useDispatch(CounterContext);
+  const { dispatch } = useDispatch(CounterContext);
+  const { state } = useContext(CounterContext);
   const { counter } = state;
   const [number, setNumber] = useState(5);
 
@@ -13,13 +14,13 @@ function Counter() {
       <hr />
       <button
         className="couter__button"
-        onClick={ () => dispatch('updateCounter', counter - 1) }
+        onClick={ () => dispatch('UPDATE_COUNTER', counter - 1) }
       >
         -1
       </button>
       <button
         className="couter__button"
-        onClick={ () => dispatch('updateCounter', counter + 1) }
+        onClick={ () => dispatch('UPDATE_COUNTER', counter + 1) }
       >
         +1
       </button>
@@ -32,7 +33,7 @@ function Counter() {
       />
       <button
         className="couter__button"
-        onClick={ () => dispatch('updateCounter', counter + number) }
+        onClick={ () => dispatch('UPDATE_COUNTER', counter + number) }
       >
         Добавить
       </button>
